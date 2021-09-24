@@ -1,10 +1,9 @@
-import os
 import sys
 from pathlib import Path
 
 
 def main():
-    allow_non_ascii = os.environ["INPUT_NONASCII"] == "true"
+    allow_non_ascii = os.environ["INPUT_ALLOW_NON_ASCII"] == "true"
 
     root = Path(".")
     paths = [str(item) for item in root.rglob("*")]

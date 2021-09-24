@@ -8,10 +8,9 @@ jobs:
       - name: Self test
         id: selftest
 
-        # Put your action repo here
         uses: arnesor/gha-path-checker@master
         with:
-          nonAscii: false
+          allow_non_ascii: false
 
       - name: Check outputs
         run: |

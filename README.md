@@ -1,7 +1,7 @@
 # GitHub Action for detecting spaces and non-ascii characters in paths
 
-[![Actions Status](https://github.com/jacobtomlinson/python-container-action/workflows/Lint/badge.svg)](https://github.com/jacobtomlinson/python-container-action/actions)
-[![Actions Status](https://github.com/jacobtomlinson/python-container-action/workflows/Integration%20Test/badge.svg)](https://github.com/jacobtomlinson/python-container-action/actions)
+[![Actions Status](https://github.com/arnesor/gha-path-checker/workflows/Lint/badge.svg)](https://github.com/arnesor/gha-path-checker/actions)
+[![Actions Status](https://github.com/arnesor/gha-path-checker/workflows/Integration%20Test/badge.svg)](https://github.com/arnesor/gha-path-checker/actions)
 
 This GitHub action contains a small Python application which will be built into a minimal [Container Action](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-a-docker-container-action). Our final container from this template is ~50MB, yours may be a little bigger once you add some code.
 
