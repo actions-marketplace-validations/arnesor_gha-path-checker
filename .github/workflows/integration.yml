@@ -15,4 +15,4 @@ jobs:
 
       - name: Check outputs
         run: |
-          test "${{ steps.selftest.outputs.errors }}" == "2"
+          test "${{ steps.selftest.outputs.errors }}" == "0"
