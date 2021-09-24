@@ -1,13 +1,14 @@
-name: "Python Container Action Template"
-description: "Get started with Python Container actions"
-author: "Jacob Tomlinson"
+name: "Path checker"
+description: "GitHub Action for detecting paths with spaces and non-ascii characters"
+author: "Arne Sørli"
 inputs:
-  myInput:
-    description: "Input to use"
-    default: "world"
+  nonAscii:
+    description: "Allow non-ascii characters in file paths"
+    required: false
+    default: true
 outputs:
-  myOutput:
-    description: "Output from the action"
+  errors:
+    description: "Number of paths with errors"
 runs:
   using: "docker"
   image: "Dockerfile"
