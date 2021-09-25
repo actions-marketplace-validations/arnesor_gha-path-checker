@@ -1,6 +1,9 @@
 name: "Path checker"
 description: "GitHub Action for detecting paths with spaces and non-ascii characters"
 author: "Arne Sørli"
+branding:
+  icon: "check"
+  color: "blue"
 inputs:
   allow_non_ascii:
     description: "Allow non-ascii characters in file paths"
