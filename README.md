@@ -3,15 +3,18 @@
 [![Actions Status](https://github.com/arnesor/gha-path-checker/workflows/Lint/badge.svg)](https://github.com/arnesor/gha-path-checker/actions)
 [![Actions Status](https://github.com/arnesor/gha-path-checker/workflows/Integration%20Test/badge.svg)](https://github.com/arnesor/gha-path-checker/actions)
 
-This GitHub action contains a small Python application which will be built into a minimal [Container Action](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-a-docker-container-action). Our final container from this template is ~50MB, yours may be a little bigger once you add some code.
+This GitHub Action checks your repository for problematic path names (both in the
+directory part and in the filename part). If it detects problematic paths, the
+problematic paths are listed and the action fails.
 
-In `main.py` you will find a small example of accessing Action inputs and returning Action outputs. For more information on communicating with the workflow see the [development tools for GitHub Actions](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/development-tools-for-github-actions).
+Problematic path names are paths with space characters. The GitHub Action can also
+optionally check for paths with non-ascii characters, using the  `allow_non_ascii `
+option. For example paths with the norwegian letters "æøå".
 
-Article describing [how to make a python-based GitHub action](https://jacobtomlinson.dev/posts/2019/creating-github-actions-in-python/).
+The article [how to make a python-based GitHub action](https://jacobtomlinson.dev/posts/2019/creating-github-actions-in-python/)
+has been a great help for developing this GitHub Action. 
 
 ## Usage
-
-Describe how to use your action here.
 
 ### Example workflow
 
@@ -22,63 +25,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Run action
-
-      # Put your action repo here
-      uses: me/myaction@master
-
-      # Put an example of your mandatory inputs here
-      with:
-        myInput: world
+      - uses: actions/checkout@v2
+      - name: Path checks
+        id: pathcheck
+        uses: arnesor/gha-path-checker@master
+        with:
+          allow_non_ascii: false
 ```
 
 ### Inputs
 
-| Input                                             | Description                                        |
-|------------------------------------------------------|-----------------------------------------------|
-| `myInput`  | An example mandatory input    |
-| `anotherInput` _(optional)_  | An example optional input    |
+| Input                          | Description                                          |
+|--------------------------------|------------------------------------------------------|
+| `allow_non_ascii` _(optional)_ | Allow non-ascii characters in paths. Default _true_. |
 
 ### Outputs
 
-| Output                                             | Description                                        |
-|------------------------------------------------------|-----------------------------------------------|
-| `myOutput`  | An example output (returns 'Hello world')    |
-
-## Examples
-
-> NOTE: People ❤️ cut and paste examples. Be generous with them!
-
-### Using the optional input
-
-This is how to use the optional input.
-
-```yaml
-with:
-  myInput: world
-  anotherInput: optional
-```
-
-### Using outputs
-
-Show people how to use your outputs in another action.
-
-```yaml
-steps:
-- uses: actions/checkout@master
-- name: Run action
-  id: myaction
-
-  # Put your action name here
-  uses: me/myaction@master
-
-  # Put an example of your mandatory arguments here
-  with:
-    myInput: world
-
-# Put an example of using your outputs here
-- name: Check outputs
-    run: |
-    echo "Outputs - ${{ steps.myaction.outputs.myOutput }}"
-```
+| Output    | Description                  |
+|-----------|------------------------------|
+| `errors`  | Number of paths with errors. |
